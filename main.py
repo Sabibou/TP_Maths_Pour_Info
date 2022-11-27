@@ -1,8 +1,8 @@
 def code_inverse(message) :
-	trad=[]
+	trad=[]    #création d'une liste pour acceuillir le mot crypté
 	for lettre in message:
-		trad.insert(0,lettre)
-	return ''.join(trad)
+		trad.insert(0,lettre)  #chaque lettre est placé au debut du mot crypté
+	return ''.join(trad)  #on renvoie le mot sous forme de str
 
 def pgcd(a,b):
 	if a>b:
@@ -45,17 +45,17 @@ def cesar(mot, alphabet, n, b, mode):
 	if b>=n or b<0:
 			b=b%n
 
-	if mode =='c':
+	if mode =='c':  #on crypte le mot
 		print("Voici le mot à crypter : ",mot)
-		for i in range(len(mot2)):
+		for i in range(len(mot2)):  #pour chaque lettre dans le mot on vérifie si elle est dans l'alphabet
 			try:
-				index=alphabet2.index(mot2[i],0,n)			
+				index=alphabet2.index(mot2[i],0,n)	#si c'est le cas on obtient son index dans l'alphabet		
 			except:
-				index=0
-			index=(index+b)%n
-			trad.append(alphabet2[index])
+				index=0   #sinon on mettra la premiere lettre de l'alphabet
+			index=(index+b)%n  
+			trad.append(alphabet2[index]) #on rajoute la nouvelle lettre dans le nouveau mot 
 
-	if mode =='d':
+	if mode =='d': #même principe mais cette fois on décrypte
 		print("Voici le mot à décrypter : ",mot)
 		for i in range(len(mot2)):
 			try:
@@ -66,7 +66,7 @@ def cesar(mot, alphabet, n, b, mode):
 			trad.append(alphabet2[index])
 
 
-	return ''.join(trad)
+	return ''.join(trad)   #on retourne le mot au format str
 
 
 def cesar_aff(mot, alphabet, n, a, b, mode):
@@ -112,3 +112,4 @@ mot=cesar("Chez moi, le secret est enfermé dans une maison aux solides cadenas 
 print(cesar(mot, Alphabet, len(Alphabet), 1000, "d"))
 mot2=cesar_aff("BONJOUR",Alphabet,len(Alphabet),3,3,'c')
 print(cesar_aff(mot2,Alphabet,len(Alphabet),3,3,'d'))
+
