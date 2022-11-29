@@ -38,11 +38,11 @@ def euclide_etendu(a,n):
 
 def cesar(mot, alphabet, n, b, mode):
 
-	mot2=list(mot)
-	alphabet2=list(alphabet)
+	mot2=list(mot)         #on transforme le mot en liste
+	alphabet2=list(alphabet)  #on transforme l'alphabet en liste
 	trad=[]
 
-	if b>=n or b<0:
+	if b>=n or b<0:   #on verifie que la cle est comprise entre 0 et la taille de l'alphabet
 			b=b%n
 
 	if mode =='c':  #on crypte le mot
@@ -59,7 +59,7 @@ def cesar(mot, alphabet, n, b, mode):
 		print("Voici le mot à décrypter : ",mot)
 		for i in range(len(mot2)):
 			try:
-				index=alphabet2.index(mot2[i],0,n)   #si le caractere nest pas dans lalphabet on met par defaut le premier carac
+				index=alphabet2.index(mot2[i],0,n)   #si le caractere nest pas dans l'alphabet on met par defaut le premier caractere
 			except:
 				index=0
 			index=index=(index-b)%n
@@ -73,28 +73,31 @@ def cesar_aff(mot, alphabet, n, a, b, mode):
 	while pgcd(a,n)!=1:
 		a=int(input("Rentrez un a valide\n"))
 
-	if b>=n or b<0:
+	if b>=n or b<0:#on verifie que b est comprise entre 0 et la taille de l'alphabet
 			b=b%n
+
+	if a>=n or a<0:#on verifie que a est comprise entre 0 et la taille de l'alphabet
+			a=a%n
 
 	mot2=list(mot)
 	alphabet2=list(alphabet)
 	trad=[]
 
 
-	if mode =='c':
+	if mode =='c': #cryptage/même principe que la fonction cesar
 		print("Voici le mot à crypter : ",mot)
 		for i in range(len(mot2)):
 			try:
-				index=alphabet2.index(mot2[i],0,n)
+				index=alphabet2.index(mot2[i],0,n) 
 			except:
 				index=0
 			index=((a*index)+b)%n
 			trad.append(alphabet2[index])
 
-	if mode =='d':
+	if mode =='d': #decryptage
 		print("Voici le mot à décrypter : ",mot)
 		a1=euclide_etendu(a,n) #a', l'inverse multiplicatif de a
-		b1=((-a1)*b)%n
+		b1=((-a1)*b)%n   
 		for i in range(len(mot2)):
 			try:
 				index=alphabet2.index(mot2[i],0,n)
