@@ -137,13 +137,11 @@ Université Clermont Auvergne\\}
 	\\
 	\textbf{Exemple : }\textit{Bonjour} devient \textit{ruojnoB}
 	
-	\subsection{Code César}
-	
-	Le but est de chiffrer un mot par décalage des lettres de l'alphabet d'une valeur fixe que l'on appelle clé.\\
-	\\
-	Si on dépasse la dernière lettre de l'alphabet, on reprend à la première : on travaille alors sur modulo \textit{taille de l'alphabet}.\\
+		Le but est de chiffrer un mot par décalage des caractères de l'alphabet d'une valeur fixe que l'on va ici appeler $b$.\\
 	\\
 	On appelle $n$, la taille de l'alphabet.\\
+	\\
+	Si on dépasse la dernier caractère de l'alphabet, on reprend au premier : on travaille alors sur modulo $n$.\\
 	\\
 	On obtient alors la clé de chiffrement suivante :\\
 	
@@ -151,10 +149,59 @@ Université Clermont Auvergne\\}
 	f:\left\{
 	\begin{array}{l}
 	{0,..,n} \rightarrow {0,..,n}\\
-	x \rightarrow f(x)=x + \textit{clé }\text{mod } n
-	\end{array}
-	
+	x \rightarrow f(x)=x + b\text{ mod } n
+	\end{array}	
 	\right.
-		$$
+	$$
+	
+	\medskip
+	
+	Posons $y$, le nouveau caractère avec $y=f(x)$. On cherche la fonction $g$ tel que $g(y)=x$.\\
+	\\
+	On en déduit alors que la clé de déchiffrement est :
+	
+	$$
+	g:\left\{
+	\begin{array}{l}
+	{0,..,n} \rightarrow {0,..,n}\\
+	y \rightarrow g(y)=y - b\text{ mod } n
+	\end{array}	
+	\right.
+	$$
+	
+	
 	\subsection{Code César affine}
+	
+	Le but est aussi de chiffrer un mot par décalage des caractères de l'alphabet. Or ici, le chiffrement se fait à l'aide d'une fonction affine.\\
+	\\
+	On obtient une clé de chiffrement de la sorte :\\ 
+	\\
+	
+	$$
+	f:\left\{
+	\begin{array}{l}
+	{0,..,n} \rightarrow {0,..,n}\\
+	x \rightarrow f(x)=ax + b\text{ mod } n
+	\end{array}	
+	\right.
+	$$
+	
+	(avec $a$ et $b$ des entiers et $n$ indiquant toujours la taille de l'alphabet).\\
+	\\
+	D'ailleurs, pour que le code fonctionne, on doit s'assurer que $PGCD(a,n)=1$, soit que $a$ et $n$ sont premiers entre eux.\\
+	\\
+	Cependant, dans ce cas me déchiffrement est plus difficile. On doit toujours aboutir à une fonction affine $g$ du type $g(y) =x=a'y+b'$.\\
+	\\
+	Puisque on a $y=f(x)$ alors on en déduit que :
+	\begin{align*}
+	g(y)=a'x+b'&=a'(ax+b)+b'[n]\\
+	\intertext{d'où}
+	&=a'ax+a'b+b'[n]
+	\end{align*} 
+	\\
+	Par identification, on obtient $aa'\equiv1[n]$ et $a'b+b' \equiv 0[n]$.\\
+	\\
+	$a'$ est donc l'inverse multiplicatif de $a[n]$ et on en déduit que $b\equiv -a'b[26]$.\\
+	\\
+	On obtient $a'$ grâce à l'algorithme d'Euclide Etendu. En effet, puisque $PGCD(a,n)=1$ alors d'après l'identité de Bezout $\exists(u,v), au+nv=1$, avec ici $u=a'$.
 \end{document}
