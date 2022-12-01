@@ -19,10 +19,10 @@ Alphabet2 = """!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_'a
 
 ## Code César Simple
 
-def cesar(message):
+def cesar(message,alphabet):
     print("Cryptage/Décryptage avec César Simple")
-    b = int(input("Nombre de décalages :")) # b représente la clé de chiffrement
-    mode = input("Crypatge ('c') ou décryptage('d') :")
+    b = int(input("Clé de chiffrement :")) # b représente la clé de chiffrement
+    mode = input("Cryptage ('c') ou décryptage('d') :")
     if mode == 'd':
         b = -b%len(alphabet) # recalcul de b pour le déchiffrement
     messchi = [] # création d'une liste vide qui va contenir le message chiffré(indices dans l'alphabet choisi)
@@ -32,7 +32,9 @@ def cesar(message):
     for i in message: # parcours de chaque lettre du message
         if i in alphabet:
             k = alphabet.find(i)# si la lettre se trouve dans l'alphabet choisi, on récupère et on affecte la valeur de l'indice correspondant dans k
-            messchi.append(k) # actualisation de la liste du message chiffré
+        else :
+            k=0 #si la lettre n'est pas dans l'alphabet, on met par défaut la première lettre de l'alphabet
+        messchi.append(k) # actualisation de la liste du message chiffré
 
     for j in messchi: # parcours des chiffres dans le message chiffré
         j = (j+ b)%len(alphabet) # mise à jour de la valeur des chiffres(indices) en utilisant  y=(x-b)mod n avec n la taille de l'alphabet choisi
@@ -68,14 +70,14 @@ def euclideEtendu(a,b):
     return u[i-2] # retour de l'avant dernière valeur de u qui va correspondre à l'inverse multiplicatif de la clé de chiffrement a
 
 
-def cesarAffine(message): 
+def cesarAffine(message,alphabet): 
     print("Cryptage/Décryptage avec César Affine")
     a = int(input("Valeur de a :")) # clé de chiffrement a
-    if pgcd(a,len(alphabet))!=1: # vérification que la clé a et la taille de l'alphabet sont premiers entre eux
+    while pgcd(a,len(alphabet))!=1: # vérification que la clé a et la taille de l'alphabet sont premiers entre eux
         print("a n'est pas premier avec la taille de l'alphabet")
         a = int(input("Valeur de a :"))
     b = int(input("Valeur de b :")) # clé de chiffrement b
-    mode = input("Crypatge ('c') ou décryptage('d') :")
+    mode = input("Cryptage ('c') ou décryptage('d') :")
     if mode == 'd':
         a = euclideEtendu(a,len(alphabet)) # calcul de l'inverse multiplicatif pour obtenir la clé de déchiffrement a'
         b = (-a*b)%len(alphabet) # calcul de b'
@@ -85,8 +87,10 @@ def cesarAffine(message):
 
     for i in message:
         if i in alphabet: # parcours de chaque lettre du message
-            k = alphabet.find(i) # affectation de la valeur de l'indice correspondant à i dans k, si i se trouve dans l'alphabet choisi, on récupère et on 
-            messchi.append(k) # actualisation de la liste du message chiffré
+            k = alphabet.find(i) # affectation de la valeur de l'indice correspondant à i dans k, si i se trouve dans l'alphabet choisi, on récupère et on affecte la valeur de l'indice correspondant dans k
+        else :
+            k=0 #si la lettre n'est pas dans l'alphabet, on met par défaut la première lettre de l'alphabet
+        messchi.append(k) # actualisation de la liste du message chiffré
 
     for j in messchi: # parcours des chiffres dans le message chiffré
         j = (a*j + b)%len(alphabet) # mise à jour de la valeur des chiffres(indices) en utilisant  y=(a'x+b')mod n avec n la taille de l'alphabet choisi
@@ -104,15 +108,22 @@ print("#########################################################################
 print("#################PROGRAMME DE CRYPTAGE/DECRYPTAGE########################")
 print("#########################################################################")
 
-alphabet = input("""Quel alphabet voulez vous-utilisez (1 ou 2)? \n 1- Alphabet1 =ABCDEFGHIJKLMNOPQRSTUVWXYZ \n 2- Alphabet2 =!"#$%&'\()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_'abcdefghijklmnopqrstuvwxyzéèë}{£" \n Réponse :""")
-myTemplate = "{} = {}"
-statement = myTemplate.format("alphabet", alphabet)
-exec(statement)
+#alphabet = input("""Quel alphabet voulez vous-utilisez (1 ou 2)? \n 1- Alphabet1 =ABCDEFGHIJKLMNOPQRSTUVWXYZ \n 2- Alphabet2 =!"#$%&'\()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_'abcdefghijklmnopqrstuvwxyzéèë}{£" \n Réponse :""")
+#myTemplate = "{} = {}"
+#statement = myTemplate.format("alphabet", alphabet)
+#exec(statement)
+
+num_alph=int(input("""Quel alphabet voulez vous-utilisez (1 ou 2)? \n 1- Alphabet1 =ABCDEFGHIJKLMNOPQRSTUVWXYZ \n 2- Alphabet2 =!"#$%&'\()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_'abcdefghijklmnopqrstuvwxyzéèë}{£" \n Réponse :"""))
+if num_alph==1:
+    alphabet=Alphabet1
+else:
+    alphabet=Alphabet2
 message = input("Entrer votre message :")
 m = message
-print(m)
-print(crypt(m))
-print(cesar(m))
-#print(pgcd(3,6))
-#print(euclideEtendu(15,9))
-#print(cesarAffine(m))
+code = int(input("Choississez le type de code à utiliser :\n 1-Code inverse\n 2-Code César\n 3-Code César affine\n"))
+if code ==1 :
+    print(crypt(m))
+elif code ==2:
+    print(cesar(m,alphabet))
+else :
+    print(cesarAffine(m,alphabet))
