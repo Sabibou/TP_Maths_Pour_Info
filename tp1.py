@@ -14,7 +14,7 @@ def crypt(mess):
 ##Alphabets
 
 Alphabet1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-Alphabet2 = """!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_'abcdefghijklmnopqrstuvwxyzéèë}{£"""
+Alphabet2 = """!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_'abcdefghijklmnopqrstuvwxyz{é}£ """
 
 
 ## Code César Simple
@@ -53,6 +53,7 @@ def pgcd(a,b):
     else:
         return pgcd(b,a%b)
 
+#Fonction Euclide Etendu
 def euclideEtendu(a,b):
     r=[a,b] # initialisation de la liste des restes contenant la clé a et la taille de l'alphabet choisi
     q=[-1]  # initialisation de la liste des quotients (-1 pour signifier que la division par 0 est impossible avec des entiers)
@@ -118,8 +119,25 @@ if num_alph==1:
     alphabet=Alphabet1
 else:
     alphabet=Alphabet2
-message = input("Entrer votre message :")
-m = message
+
+## Jeux d'essais
+m1 = "Si deux hommes ont la même opinion. L’un d’eux est de trop"
+m2 = """ 'snoçel sed ennod em no uq sruojuot sap emia n ej euq neib erdnerppa a terp sruojuot sius ej' """
+m3 = "Cyhfibhffnhermertneqreybvaqnafyrcnffrcyhfibhfireermybvaqnafyrshghee"
+m4 = """ ""Chez moi, le secret est enfermé dans une maison aux solides cadenas dont la clé est perdue et la porte scellée."-Les milles et une nuits" """
+
+num_message = int(input("Quel message voulez-vous utilisez ? \n Pour votre propre message saissisez un chiffre supérieur à 4 :"))
+if num_message == 1:
+    m = m1
+elif num_message == 2:
+    m = m2
+elif num_message == 3:
+    m = m3
+elif num_message == 4:
+    m = m4
+else:
+    m = input("Entrer votre message :")
+
 code = int(input("Choississez le type de code à utiliser :\n 1-Code inverse\n 2-Code César\n 3-Code César affine\n"))
 if code ==1 :
     print(crypt(m))

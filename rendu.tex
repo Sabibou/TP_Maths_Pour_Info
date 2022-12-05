@@ -101,7 +101,7 @@
 \title{TP Cryptage}
 \medskip
 
-\author{Salmân Abibou \& Rodrigo Ferreira Rodrigues \\
+\author{M'hammed Salmân Abibou \& Rodrigo Ferreira Rodrigues \\
 Université Clermont Auvergne\\}
 \vfill
 
@@ -204,4 +204,66 @@ Université Clermont Auvergne\\}
 	$a'$ est donc l'inverse multiplicatif de $a[n]$ et on en déduit que $b\equiv -a'b[26]$.\\
 	\\
 	On obtient $a'$ grâce à l'algorithme d'Euclide Etendu. En effet, puisque $PGCD(a,n)=1$ alors d'après l'identité de Bezout $\exists(u,v), au+nv=1$, avec ici $u=a'$.
+	
+	
+\section{Programmes python \& Jeux d'essais}	
+	
+	
+	\subsection{Programmes python}
+	
+		\subsubsection{Code inverse}
+		\lstinputlisting[language=python, firstline=4, lastline=12, frame=trBL, caption = Fonction Code Inverse.]{tp1.py}
+		
+		\subsubsection{Code César simple}
+		
+		\lstinputlisting[language=python, firstline=20, lastline=44, frame=trBL, caption = Fonction Code César Simple.]{tp1.py}
+		
+		\subsubsection{PGCG}
+		
+		\lstinputlisting[language=python, firstline=48, lastline=54, frame=trBL, caption = Fonction PGCD.]{tp1.py}
+		
+		\subsubsection{Algorithme d'Eucide Etendu}
+		
+		\lstinputlisting[language=python, firstline=56, lastline=71, frame=trBL, caption = Algorithme d'Euclide Etendu.]{tp1.py}
+		
+		\subsubsection{Code César Affine}
+		
+		Dans le code César affine nous allons utilisés les fonctions pgcd et Euclide étendu.
+			
+		\lstinputlisting[language=python, firstline=74, lastline=101, frame=trBL, caption = Fonction Code César Affine.]{tp1.py}
+	
+	
+	\subsection{Jeux d'essais}	
+	
+	Pour nos jeux d'essais on a construit un programme principal qui s'opère comme suit :
+		\begin{enumerate}
+			\item On demande à l'utilisateur quel alphabet il veut utiliser entre les deux qu'on lui propose;
+			\item Ensuite, l'utilsateur doit faire un choix du message qu'il veut crypter ou décrypter entre quatre (il saisit un chiffre entre 1 et 4) propositions de messages et a aussi le choix de personnaliser son message en le saisissant lui-même (il saisira un chiffre supérieur à 4, 5 par exemple);
+			\item Enfin, il lui est demandé de choisir par quel méthode il veut crypter ou décrypter le message choisi (1 pour le code inverse, 2 pour le code César simple et 3 pour le code César affine).
+		\end{enumerate}
+		
+		
+		\subsubsection{Jeu 1}
+				
+	Crypter/Décrypter : Si deux hommes ont la même opinion. L’un d’eux est de trop
+
+
+		\subsubsection{Jeu 2}
+		
+	Décrypter : 'snoçel sed ennod em no uq sruojuot sap emia n ej euq neib erdnerppa a terp
+sruojuot sius ej'
+
+		\subsubsection{Jeu 3}
+		
+	Décrypter : Cyhfibhffnhermertneqreybvaqnafyrcnffrcyhfibhfireermybvaqnafyrshghee (César : cle 13)
+
+		\subsubsection{Jeu 4}
+		
+	Crypter/Décrypter : ""Chez moi, le secret est enfermé dans une maison aux solides cadenas dont la clé est perdue et la porte scellée."-Les milles et une nuits" (cle 2023)
+	
+	
+	
+	
+	
+	
 \end{document}

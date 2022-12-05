@@ -1,0 +1,124 @@
+\documentclass{homework}
+
+\title{Mathématiques à l'usage des informaticiens\\
+TP2: Le code RSA.}
+\author{Salmân M'hammed Abibou \& Rodrigo Ferreira Rodrigues}
+
+\begin{document}
+	\maketitle
+	\onehalfspacing
+	\exercise
+		\begin{enumerate}
+    	\item 
+    		\begin{enumerate}
+    			\item Pour déchiffrer ce massage Alice va calculer $ M' \equiv C^D \bmod N $
+    			\item 
+    				\begin{equation*}
+    					\begin{split}    				
+    				M' &\equiv C^{D} \bmod N \\
+    				M' & \equiv 17^7 \bmod 391 \\
+    				M' & = 204
+    					\end{split}
+    				\end{equation*}
+   			\end{enumerate}
+   		
+   		\item Nombres premiers p et q
+   		
+   	On sait que $p\times q = N$  et $pgcd(p,q) = 1$
+		\end{enumerate}
+
+
+
+
+\end{document}
+
+
+%\item 
+%        \begin{enumerate}
+%            \item Soit $c = y_1y_2y_3y_4y_5y_6y_7y_8 \in C$ et $N_v$ le nombre de voisins à distance de 2 de c.\\
+%        Si on modifie 2 bits on a donc :\\
+%            \begin{equation*}
+%                N_v = \binom{8}{2} = \frac{8!}{6!\,2!} = 28
+%            \end{equation*}
+%        Par conséquent on a 28 mots voisins à distance de 2 de c.
+%        \item Montrons que $|C| \leq 6$.\\
+%        Étant donné que C permet de corriger 2 erreurs, on en déduit que pour 2 mots $c_1$ et $c_2$ de C, aucun voisin à distance au plus de 2 de $c_1$ n'appartient à l'ensemble des voisins à distance au plus de 2 de $c_2$.\\
+%        Soit $\beta(c) = \left\{ c' \in \mathbb{F}_2^7 : \delta(c,c')\leq 2 \right\}$\\
+%        \begin{equation*}
+%        \begin{split}
+%            \beta(c) & = \beta_0(c) \cup \beta_1(c) \cup \beta_2(c) \\
+%                    & = \left\{c\right\} \cup \left\{ c' \in \mathbb{F}_2^7 : \delta(c,c') = 1 \right\} \cup \left\{ c' \in \mathbb{F}_2^7 : \delta(c,c') = 2\right\} \\
+%            |\beta(c)| & = 1 + 8 + 28  && \text{car toutes les boules sont disjointes}\\
+%                    & = 37
+%        \end{split}
+%        \end{equation*}
+%         On a donc :
+%        \begin{equation*}
+%            \begin{split}
+%                |C|\times 37 & \leq 256 \\
+%                |C| & \leq \frac{256}{37} = 6,92\\
+%                |C| & \leq 6
+%            \end{split}
+%        \end{equation*}
+%        avec:
+%        \begin{itemize}
+%            \item $\beta_0(c)$ l'ensemble des voisins à distance 0 de c c'est-à-dire le mot lui-même.
+%            \item $\beta_1(c)$ l'ensemble des voisins à distance 1 de c.
+%            \item $\beta_2(c)$ l'ensemble des voisins à distance 2 de c.
+%        \end{itemize}
+%        
+%        \item On suppose que C est linéaire. Soit $A_{(8,k)}$ la matrice associée au code C.\\
+%        On sait que $|C|\leq 6$. \\
+%        $|C|\leq 6$ \Leftrightarrow $2^k \leq 6$ \Leftrightarrow $k \leq 2,58$ \Leftrightarrow $k = 1 ou k = 2$.
+%        \end{enumerate}
+%    \item On a: $C:\mathbb{F}_2^2 \to \mathbb{F}_2^8$ car la matrice associée au code est une matrice à $n = 8$ lignes et $k = 2$ colonnes.\\
+%    \medskip
+%    \newline
+%    \begin{equation*}
+%        \begin{pmatrix}
+%        1 & 0 \\
+%        1 & 0 \\
+%        1 & 0 \\
+%        1 & 1 \\
+%        1 & 1 \\
+%        0 & 1 \\
+%        0 & 1 \\
+%        0 & 1 \\
+%    \end{pmatrix}
+%    \times
+%    \begin{pmatrix}
+%        x_1 \\
+%        x_2 \\
+%    \end{pmatrix}
+%    =
+%    \begin{pmatrix}
+%        y_1 = x_1 \\
+%        y_2 = x_1 \\
+%        y_3 = x_1 \\
+%        y_4 = x_1 + x_2 \\
+%        y_5 = x_1 + x_2 \\
+%        y_6 = x_2 \\
+%        y_7 = x_2 \\
+%        y_8 = x_2 \\
+%    \end{pmatrix}
+%    \end{equation*}
+%    
+%    
+%    \medskip
+%    \newline
+%    Déterminons les mots du code et leur poids
+%    \begin{center}
+%       \begin{tabular}{|c|c|c|}
+%       \hline
+%        x & y & w(y) \\
+%        \hline
+%        00 & 00000000  &   \\
+%        01 & 00011111 & 5  \\
+%        10 & 11111000 & 5  \\
+%        11 & 11100111 & 6  \\
+%        \hline
+%        \end{tabular} 
+%    \end{center}
+%    
+%    $\delta_{min} = Min(w(y)) = 5$ car C est un code linéaire.\\
+%    Les caractéristiques du code C sont: $(n = 8, k = 2, \delta_{min} = 5)$.
