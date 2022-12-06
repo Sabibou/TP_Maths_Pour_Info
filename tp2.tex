@@ -11,7 +11,7 @@ TP2: Le code RSA.}
 		\begin{enumerate}
     	\item 
     		\begin{enumerate}
-    			\item Pour déchiffrer ce massage Alice va calculer $ M' \equiv C^D \bmod N $
+    			\item Pour déchiffrer ce message Alice va calculer $ M' \equiv C^D \bmod N $
     			\item 
     				\begin{equation*}
     					\begin{split}    				
@@ -24,12 +24,111 @@ TP2: Le code RSA.}
    		
    		\item Nombres premiers p et q
    		
-   	On sait que $p\times q = N$  et $pgcd(p,q) = 1$
+			\begin{enumerate}
+    			\item On sait que $p\times q = N$  et $pgcd(p,q) = 1$. On trouve finanlement que $p = 23$ et $q = 17$.
+    			\item 
+    				\begin{equation*}
+    					\begin{split}    				
+    				\varphi(N) & = (p-1) \times (q-1)\\
+    				\varphi(N) & = 22 \times 16 \\
+    				\varphi(N) & = 352
+    					\end{split}
+    				\end{equation*}
+   			\end{enumerate}   	
+   		
+   		\item Relation entre $E$ et $D$
+   			\begin{equation*}
+   				\begin{split}
+   					D & = E^{-1} \bmod \varphi(N) \\
+   					D & = 151^{-1} \bmod 352 \\
+   					D & = 7\text{\footnotemark}
+   				\end{split}
+   			\end{equation*}
+   			\footnotetext[1]{7 étant obtenu grâce à l'algorithme d'Euclide étendu qu'on a programmé au TP1}
 		\end{enumerate}
 
+	
+	\exercise
+		\begin{enumerate}
+			\item 
+				\begin{enumerate}
+    			\item Chiffrement de $M = 112$
+    				\begin{equation*}
+    					\begin{split}    				
+    				C & = M^{E} \bmod N \\
+    				C & = 112^{11} \bmod 221 \\
+    				C & = 2
+    					\end{split}
+    				\end{equation*}
+    			\item Déchiffrement du cryptogramme $C = 78$
+    				\begin{equation*}
+    					\begin{split}    				
+    				M' & = C^{D} \bmod N \\
+    				M' & = 78^{35} \bmod 221 \\
+    				M' & = 65
+    					\end{split}
+    				\end{equation*}
+   				\end{enumerate}
+   			
+   			\item 
+				\begin{enumerate}
+    			\item Calculs de $N$ et $\varphi(N)$
+    			
+    				\begin{minipage}{0.4\linewidth}
+    					\begin{align*}    					   				    				
+    						N & = p \times q \\
+    						N & = 53 \times 71 \\
+    						N & = 3763
+    					\end{align*}
+					\end{minipage}\hfill    					
+    				\begin{minipage}{0.4\linewidth} 
+    					\begin{align*}   				
+    						\varphi(N) & = (p-1) \times (q-1)\\
+    						\varphi(N) & = 52 \times 10 \\
+    						\varphi(N) & = 3640
+    					\end{align*}
+    				\end{minipage}
+    				
+    				
+    					
+    			
+    			\item Vérification et calcul de $D$
+    			
+    			On remarque $E = 307$ < $3640 = \varphi(N)$ et que $pgcd(\varphi(N),E) = pgcd(3640,307) = 1$\footnote[1]{On l'a vérifié grâce au programme qu'on a fait au TP1} donc $E$ est acceptable.
+    				\begin{equation*}
+    					\begin{split}    				
+    				D & = E^{-1} \bmod \varphi(N) \\
+   					D & = 307^{-1} \bmod 3640 \\
+   					D & = 83
+    					\end{split}
+    				\end{equation*}
+    				
+    			\item Elements constitutifs des clés publique et privée
+    				\begin{itemize}
+    					\item Clé publique $= (E,N) = (307,221)$
+    					\item Clé privée $= D = 83$
+    				\end{itemize}
+    			
+    			
+    			\item Il faut se débarasser des éléments restants c'est-à-dire de $p$, $q$ et $\varphi(N)$ puisque leur connaissance ne sera plus utile pour la suite du cryptage/décryptage et limite aussi le risque de pirater le code.
+   			\end{enumerate}
+		\end{enumerate}
 
-
-
+	\exercise
+		\begin{enumerate}
+			\item 
+				\begin{enumerate}
+					\item Chiffrement du message "METHODE".
+					
+					\item Déchiffrement du cryptogramme: 263;115;613;10.
+					
+					\item Chiffrement du message "AVEZVOUSBIENREUSSI".
+					
+					\item Déchiffrement du cryptogramme: 1019;35;567;36;384;703;99;59.
+					
+					\item Déchiffrement du cryptogramme: 553;813.
+				\end{enumerate}
+		\end{enumerate}
 \end{document}
 
 

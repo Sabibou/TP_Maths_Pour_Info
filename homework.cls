@@ -106,7 +106,8 @@
     \geometry{margin=1in}
 \fi
 
-
+\RequirePackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 % --------[ PACKAGES: HYPERREF ]------------------------------------------------
 
 % load last: tex.stackexchange.com/q/1863

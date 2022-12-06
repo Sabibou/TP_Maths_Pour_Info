@@ -27,8 +27,8 @@ def euclideE(a,b):
         
     return u[i-2]
 
-def chiffrage(M,N,E):
-	if M<N:
+def chiffrage(M,E,N):
+	if M>N:
 		print("probleme")
 	else:
 		return pow(M,E)%N
@@ -41,18 +41,26 @@ def verifE(E,p):
 
 
 
-print("EX 1\n")
-print(pow(17,7)%391)
-print(phi(23,17))
-print("D=",euclideE(151,352))
+print("Exercice 1\n")
+N, E, D, C = 391, 151, 7, 17
+print("1- Le message déchiffré par Alice est : M' = ", dechiffrage(C,D,N))
+print("2- Nombres premiers p et q et déduction de \u03C6(N) ")
+p,q = 23,17
+print('p = {} et q = {}'.format(p,q))
+print('On déduit \u03C6(N) = {} * {} = {}'.format(p-1,q-1,phi(p,q)))
+print("3- D est l'inverse multiplicatif de E modulo \u03C6(N) et D = {}".format(euclideE(E,phi(p,q))))
 
-print("\nEX 2\n")
-print("C=", chiffrage(112,11,221))
-print("M'=",dechiffrage(78,35,221))
-print("N=",53*71," p(N)=",phi(53,71))
-print("E acceptable?",verifE(307,3640), " D=",euclideE(307,3640))
+print("\nEercice 2\n")
+N, E, D, M = 221, 11, 35, 112
+print("1-a Le message chiffré est C = {}".format(chiffrage(M,E,N)))
+C = 78
+print("1-b Le message déchiffré est M' = {}".format(dechiffrage(C,D,N)))
+p, q = 53, 71
+print("2-a N = {}*{} et \u03C6(N) = {}".format(p,q,phi(p,q)))
+E = 307
+print("2-b E acceptable?",verifE(E,phi(p,q)), "; et D =",euclideE(E,phi(p,q)))
 
-print("\nEX 3\n")
+print("\nExercice 3\n")
 print(pow(1001,353)%1073)
 print(54%26)
 

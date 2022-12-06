@@ -55,18 +55,19 @@ def pgcd(a,b):
 
 #Fonction Euclide Etendu
 def euclideEtendu(a,b):
-    r=[a,b] # initialisation de la liste des restes contenant la clé a et la taille de l'alphabet choisi
-    q=[-1]  # initialisation de la liste des quotients (-1 pour signifier que la division par 0 est impossible avec des entiers)
-    u=[1,0] # initialisation de u0 et u1 
-    v=[0,1] # initialisation de v0 et v1 
-    
-    i = 2 # initialisation de i à 2
-    while r[i-1]!=0: # test d'arrêt (lorsque le reste est nul)
-        r.append(r[i-2] % r[i-1]) # mise à jour de la liste des restes
-        q.append(r[i-2] // r[i-1])
-        u.append(u[i-2] - q[i-1] * u[i-1])
-        v.append(v[i-2] - q[i-1] * v[i-1])
-        i+=1 # incrémentation de 1
+    if pgcd(a,b) == 1:
+        r=[a,b] # initialisation de la liste des restes contenant la clé a et la taille de l'alphabet choisi
+        q=[-1]  # initialisation de la liste des quotients (-1 pour signifier que la division par 0 est impossible avec des entiers)
+        u=[1,0] # initialisation de u0 et u1 
+        v=[0,1] # initialisation de v0 et v1 
+        
+        i = 2 # initialisation de i à 2
+        while r[i-1]!=0: # test d'arrêt (lorsque le reste est nul)
+            r.append(r[i-2] % r[i-1]) # mise à jour de la liste des restes
+            q.append(r[i-2] // r[i-1])
+            u.append(u[i-2] - q[i-1] * u[i-1])
+            v.append(v[i-2] - q[i-1] * v[i-1])
+            i+=1 # incrémentation de 1
         
     return u[i-2] # retour de l'avant dernière valeur de u qui va correspondre à l'inverse multiplicatif de la clé de chiffrement a
 
@@ -99,8 +100,6 @@ def cesarAffine(message,alphabet):
     for i in messdchi:
         traduction += alphabet[i] # transformation des chiffres en lettres
     return traduction
-
-
 
 
 
