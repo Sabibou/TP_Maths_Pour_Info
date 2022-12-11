@@ -1,3 +1,5 @@
+import random
+
 def pgcd(a,b):
     if b==0:
         return a
@@ -26,6 +28,30 @@ def euclideE(a,b):
         i+=1
         
     return u[i-2]
+
+def temoin_miller(n, a):
+    s=0
+    n2=n-1
+    while n2%2==0 and n2!=0:
+        s+=1
+        n2//=2
+    d=(n-1)/pow(2,s)  #soit s et d de la sorte que n-1=2^s*d
+    x=pow(a,d)%n
+    if x==1 or x ==n-1:
+        return False
+    for i in range(s-1):
+        x=pow(x,2)%n
+        if x==n-1:
+            return False
+    return True #n est composé car a est un témoin de miller
+
+def miller_rabin(n,k):  #n un entier impair >=3 et k un entier >=1(nombre de boucle)
+    for i in range(k):
+        a = random.randint(2, n-1)
+        if temoin_miller(n,a)==True:
+            return False
+    return True   #n est probablement premier
+
 
 def chiffrage(M,E,N):
 	if M>N:
@@ -63,5 +89,4 @@ print("2-b E acceptable?",verifE(E,phi(p,q)), "; et D =",euclideE(E,phi(p,q)))
 print("\nExercice 3\n")
 print(pow(1001,353)%1073)
 print(54%26)
-
 
