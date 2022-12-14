@@ -87,6 +87,6 @@ E = 307
 print("2-b E acceptable?",verifE(E,phi(p,q)), "; et D =",euclideE(E,phi(p,q)))
 
 print("\nExercice 3\n")
-print(pow(1001,353)%1073)
+print(pow(813,353)%1073)
 print(54%26)
 

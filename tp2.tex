@@ -119,14 +119,50 @@ TP2: Le code RSA.}
 			\item 
 				\begin{enumerate}
 					\item Chiffrement du message "METHODE".
+						\begin{itemize}
+							\item Numériquement, le message correspond à $12;04;19;07;14;03;04.$
+							\item Après concaténation on a: $120419071403040.$
+							\item Découpe en paquets de 3 : $120;419;071;403;040.$
+							\item Chiffrement de chaque paquet : $120^{257} \equiv 589 \bmod 1073$; $419^{257} \equiv 673 \bmod 1073$; $71^{257} \equiv 238 \bmod 1073$; $403^{257} \equiv 308 \bmod 1073$; $40^{257} \equiv 391 \bmod 1073$.
+							\item Le cryptogramme est $\mathbf{589;673;238;308;391}$.
+						\end{itemize}
 					
 					\item Déchiffrement du cryptogramme: 263;115;613;10.
+						\begin{itemize}
+							\item Déchriffrement de chaque paquet : $263^{353} \equiv 21 \bmod 1073$; $115^{353} \equiv 724 \bmod 1073$; $613^{353} \equiv 151 \bmod 1073$; $10^{353} \equiv 914 \bmod 1073$.
+							\item Message déchiffré : $021; 724; 151; 914$.
+							\item Apres concaténation on a : $021724151914$.
+							\item Découpe en paquets de 2 : $02; 17; 24; 15; 19; 14$.
+							\item Le message est \textbf{CRYPTO}.
+						\end{itemize}
 					
 					\item Chiffrement du message "AVEZVOUSBIENREUSSI".
+						\begin{itemize}
+							\item Numériquement, le message correspond à $00;21;04;25;21;14;20;18;01;08;04;13;17;04;20;18;18;08$.
+							\item Après concaténation on a: $002104252114201801080413170420181808$.
+							\item Découpe en paquets de 3 : $002;104;252;114;201;801;080;413;170;420;181;808$.
+							\item Chiffrement de chaque paquet : $2^{257} \equiv 32 \bmod 1073$; $104^{257} \equiv 916 \bmod 1073$; $252^{257} \equiv 546 \bmod 1073$; $114^{257} \equiv 983 \bmod 1073$; $201^{257} \equiv 403 \bmod 1073$; $801^{257} \equiv 1001 \bmod 1073$; $80^{257} \equiv 709 \bmod 1073$; $413^{257} \equiv 857 \bmod 1073$; $170^{257} \equiv 716 \bmod 1073$; $420^{257} \equiv 1034 \bmod 1073$; $181^{257} \equiv 567 \bmod 1073$;$808^{257} \equiv 919 \bmod 1073$.
+							\item Le cryptogramme est $\mathbf{32;916;546;983;403;1001;709;857;716;1034;567;919}$.
+						\end{itemize}
 					
 					\item Déchiffrement du cryptogramme: 1019;35;567;36;384;703;99;59.
-					
+						\begin{itemize}
+							\item Déchriffrement de chaque paquet : $1019^{353} \equiv 180 \bmod 1073$; $35^{353} \equiv 13 \bmod 1073$; $567^{353} \equiv 181 \bmod 1073$; $36^{353} \equiv 517 \bmod 1073$; $384^{353} \equiv 140 \bmod 1073$; $703^{353} \equiv 111 \bmod 1073$; $99^{353} \equiv 041 \bmod 1073$; $59^{353} \equiv 204 \bmod 1073$.
+							\item Message déchiffré : $180;013;181;517;140;111;041;204$.
+							\item Apres concaténation on a : $180013181517140111041204$.
+							\item Découpe en paquets de 2 : $18;00;13;18;15;17;14;01;11;04;12;04$.
+							\item Le message est \textbf{SANSPROBLEME}.
+						\end{itemize}
+						
 					\item Déchiffrement du cryptogramme: 553;813.
+						\begin{itemize}
+							\item Déchriffrement de chaque paquet : $553^{353} \equiv 50 \bmod 1073$; $813^{353} \equiv 813 \bmod 1073$.
+							\item Message déchiffré : $050;813$.
+							\item Apres concaténation on a : $050813$.
+							\item Découpe en paquets de 2 : $05;08;13$.
+							\item Le message est \textbf{FIN}.
+						\end{itemize}
+						
 				\end{enumerate}
 		\end{enumerate}
 \end{document}
