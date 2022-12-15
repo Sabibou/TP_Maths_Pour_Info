@@ -87,6 +87,18 @@ E = 307
 print("2-b E acceptable?",verifE(E,phi(p,q)), "; et D =",euclideE(E,phi(p,q)))
 
 print("\nExercice 3\n")
-print(pow(813,353)%1073)
-print(54%26)
+
+R = 1
+while R == 1: #pour arrêter le programme
+    a = int(input("Valeur de M ou C : "))
+    b = int(input("Valeur de E ou D : "))
+    N = int(input("Valeur de N : "))
+    R = pow(a,b)%N
+    print(R)
+    R = input("Voulez vous faire une autre opération?(o/n)")
+    if R == 'o':
+        R = 1
+    else:
+        R = 0
+
 
